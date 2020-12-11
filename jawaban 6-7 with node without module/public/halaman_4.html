@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front End Dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" /> 
+</head>
+<body>
+    <h3>Jawaban 7-4</h3>
+
+    <table id="table-hasil" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <td>Country</td>
+                <td>Year</td>
+                <td>max temp</td>
+                <td>min temp</td>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+    <script>
+
+        function getData() {
+
+        
+            fetch('http://localhost:3000/api/jawaban/4').then(resp => resp.json()).then(resp => {
+                const table = document.querySelector('#table-hasil').getElementsByTagName('tbody')[0];
+
+                //const data = JSON.parse(resp);
+                table.innerHTML = '';
+                
+                resp.forEach(r => { 
+                    const row = table.insertRow();
+                    
+                    const cellCountry = row.insertCell();
+                    const cellYear = row.insertCell();
+                    const cellMax = row.insertCell();
+                    const cellMin = row.insertCell();
+
+                    cellCountry.innerHTML = r.Country;
+                    cellYear.innerHTML = r.Year;
+                    cellMax.innerHTML = r.max;
+                    cellMin.innerHTML = r.min;
+                    
+                });
+
+            });
+        }
+
+        getData();
+
+    </script>
+</body>
+</html>
